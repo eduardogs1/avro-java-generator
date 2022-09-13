@@ -1,0 +1,7 @@
+{
+    "name": "PartitionKey",
+    "namespace": "com.inditex.mecc.mecprwat.api.avro.v1",
+    "subject": "meccano.productandcatalog.product.v5-key",
+    "doc": "Avro schema for partition key",
+    "type": "string"
+}

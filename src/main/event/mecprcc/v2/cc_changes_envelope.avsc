@@ -1,0 +1,23 @@
+{
+  "name": "CCChangesEnvelope",
+  "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+  "subject": "meccano.productandcatalog.cc.v4-value",
+  "doc": "Avro envelope that holds cc changes.",
+  "type": "record",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": "com.inditex.aqsw.pipe.v1.Metadata",
+      "doc": "Avro's metadata information."
+    },
+    {
+      "name": "payload",
+      "doc": "Content of the message",
+      "type": [
+        "CCChanged",
+        "CCDeleted",
+        "CCMediaChanged"
+      ]
+    }
+  ]
+}

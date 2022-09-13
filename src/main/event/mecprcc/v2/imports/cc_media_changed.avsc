@@ -1,0 +1,43 @@
+[
+  {
+    "name": "CCMediaChanged",
+    "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+    "type": "record",
+    "doc": "Class that holds the Media information of a Commercial Component",
+    "fields": [
+      {
+        "name": "id",
+        "type": "long",
+        "doc": "Event's identifier will be the Product's identifier in case of a Color/Styling component, and the CC's identifier on any other case"
+      },
+      {
+        "name": "cc_id",
+        "type": "long",
+        "doc": "Commercial Component unique identifier"
+      },
+      {
+        "name": "environment",
+        "type": {
+          "name": "Environment",
+          "type": "enum",
+          "symbols": [
+            "DRAFT",
+            "LIVE"
+          ]
+        },
+        "doc": "Environment where the media has been processed."
+      },
+      {
+        "name": "media",
+        "type": "string",
+        "doc": "JSON with Media's information in String format"
+      },
+      {
+        "name": "updated_at",
+        "type": "long",
+        "logicalType": "timestamp-micros",
+        "doc": "Timestamp expressed in microseconds when the Component's Media was updated"
+      }
+    ]
+  }
+]

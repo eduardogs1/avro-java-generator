@@ -1,0 +1,315 @@
+[
+    {
+        "name": "Seo",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds the SEO information of a Commercial Component.",
+        "fields": [
+            {
+              "name": "id",
+              "type": "string",
+              "doc": "SEO unique identifier"
+            }
+        ]
+    },
+    {
+        "name": "GroupRelation",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds the Commercial Component Group Relation information.",
+        "fields": [
+            {
+              "name": "product_id",
+              "type": "long",
+              "doc": "Product's unique identifier"
+            },
+            {
+              "name": "color_id",
+              "type": ["null", "int"],
+              "doc": "Color's unique identifier"
+            },
+            {
+              "name": "is_main",
+              "type": "boolean",
+              "doc": "Whether it's the main product of the Commercial Component"
+            },
+            {
+              "name": "position",
+              "type": "int",
+              "doc": "Product's position in Commercial Component"
+            },
+            {
+              "name": "size_id",
+              "type": ["null", "int"],
+              "doc": "Size's unique identifier"
+            },
+            {
+              "name": "style_id",
+              "type": ["null", "int"],
+              "doc": "Optional styling of the product"
+            }
+        ]
+    },
+    {
+        "name": "Group",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds the Commercial Component Group information.",
+        "fields": [
+            {
+              "name": "name",
+              "type": "string",
+              "doc": "Commercial Component Group's name"
+            },
+            {
+              "name": "position",
+              "type": "int",
+              "doc": "Commercial Component Group's position"
+            },
+            {
+              "name": "relations",
+              "doc": "List of relations of the Commercial Component Group",
+              "type": {
+                "type": "array",
+                "items": "GroupRelation"
+              }
+            }
+        ]
+    },
+    {
+        "name": "PublicationSegment",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds a publication segment with both the initial and final timestamps",
+        "fields": [
+            {
+              "name": "start_date",
+              "type": "long",
+              "logicalType": "timestamp-millis",
+              "doc": "Commercial Component initial timestamp expressed in microseconds since when the Commercial Component is visible"
+            },
+            {
+              "name": "end_date",
+              "type": ["null", "long"],
+              "logicalType": "timestamp-millis",
+              "doc": "Commercial Component ending timestamp expressed in microseconds until when the Commercial Component is visible"
+            }
+        ]
+    },
+    {
+        "name": "PublicationTimeline",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds a publication timeline information for a Commercial Component that includes the store where it applies as well as the list of publication segments",
+        "fields": [
+            {
+              "name": "store_id",
+              "type": "long",
+              "doc": "Store unique identifier"
+            },
+            {
+              "name": "segments",
+              "type": {
+                "type": "array",
+                "items": "PublicationSegment",
+                "doc": "List of publication segments with range of initial and ending timestamps"
+              }
+            },
+            {
+              "name": "blocked",
+              "type": "boolean",
+              "doc": "Whether the timeline is blocked or not"
+            }
+        ]
+    },
+    {
+        "name": "Description",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds a the descriptions' texts for a Commercial Component and a locale",
+        "fields": [
+            {
+              "name": "locale",
+              "type": "string",
+              "doc": "Locale ISO code"
+            },
+            {
+              "name": "name",
+              "type": ["null", "string"],
+              "doc": "Commercial Component's description name on the given locale"
+            },
+            {
+              "name": "short_description",
+              "type": ["null", "string"],
+              "doc": "Commercial Component's short description text on the given locale"
+            },
+            {
+              "name": "long_description",
+              "type": ["null", "string"],
+              "doc": "Commercial Component's long description text on the given locale"
+            }
+        ]
+    },
+    {
+        "name": "AttributeValue",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds a the attributes' values for an Attribute a locale",
+        "fields": [
+            {
+              "name": "locale",
+              "type": "string",
+              "doc": "Attribute's locale ISO Code"
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "doc": "Attribute's value text"
+            }
+        ]
+    },
+    {
+        "name": "Attribute",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds a the attributes' texts for a Commercial Component and a locale",
+        "fields": [
+            {
+              "name": "type",
+              "type": "string",
+              "doc": "Type of attribute: TAG, LABEL"
+            },
+            {
+              "name": "code",
+              "type": "string",
+              "doc": "Attribute's unique identifier"
+            },
+            {
+              "name": "values",
+              "doc": "Map of attribute values per locale",
+              "type": {
+                "type": "map",
+                "values": "AttributeValue"
+              }
+            }
+        ]
+    },
+    {
+      "name": "RelatedComponent",
+      "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+      "type": "record",
+      "doc": "Class that holds the info of a single related commercial component",
+      "fields": [
+        {
+          "name": "cc_id",
+          "type": "long",
+          "doc": "CC's unique identifier."
+        },
+        {
+          "name": "precedence",
+          "type": "int",
+          "doc": "Position to order the values inside the kind of relation."
+        }
+      ]
+    },
+    {
+      "name": "RelatedComponents",
+      "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+      "type": "record",
+      "doc": "Class that holds the info of a list of related commercial components",
+      "fields": [
+        {
+          "name": "related_components",
+          "doc": "List of related commercial components",
+          "type": {
+            "type": "array",
+            "items": "RelatedComponent"
+          }
+        }
+      ]
+    },
+    {
+        "name": "CCChanged",
+        "namespace": "com.inditex.mecc.mecprcc.api.avro.v2",
+        "type": "record",
+        "doc": "Class that holds the whole commercial component information.",
+        "fields": [
+            {
+              "name": "updated_at",
+              "type": "long",
+              "logicalType": "timestamp-micros",
+              "doc": "Timestamp expressed in microseconds when the Commercial Component was updated"
+            },
+            {
+              "name": "id",
+              "type": "long",
+              "doc": "Commercial Component unique identifier"
+            },
+            {
+              "name": "type",
+              "doc": "Type of Commercial Component: LOOK, SUIT, UNISIZE, MULTISIZE, GROUP, BEAUTY, COLORBUNDLE, STYLINGBUNDLE, PRODUCT",
+              "type": "string"
+            },
+            {
+              "name": "style_id",
+              "type": "int",
+              "doc": "Styling identifier"
+            },
+            {
+              "name": "reference",
+              "type": "string",
+              "doc": "Commercial Component's partnumber"
+            },
+            {
+              "name": "seo",
+              "type": "Seo",
+              "doc": "Commercial Component's SEO information"
+            },
+            {
+              "name": "base_cc_id",
+              "type": ["null", "long"],
+              "doc": "Related Commercial Component. If null then it means that the Commercial Component is the base one, otherwise the base_cc_id points to its base Commercial Component"
+            },
+            {
+              "name": "groups",
+              "type": {
+                "doc": "List of groups that belongs to the Commercial Component",
+                "type": "array",
+                "items": "Group"
+              }
+            },
+            {
+              "name": "publication_timelines",
+              "doc": "Map of publication's timelines per store",
+              "type": {
+                "type": "map",
+                "values": "PublicationTimeline"
+              }
+            },
+            {
+              "name": "descriptions",
+              "doc": "Map of descriptions per locale",
+              "type": {
+                "type": "map",
+                "values": "Description"
+              }
+            },
+            {
+              "name": "attributes",
+              "type": {
+                "doc": "List of Attributes of the Commercial Component",
+                "type": "array",
+                "items": "Attribute"
+              }
+            },
+	        {
+	          "name": "component_relations",
+	          "doc": "Map of relations with other components by type of relation",
+	          "type": {
+	            "type": "map",
+	            "values": "RelatedComponents"
+	          }
+	        }
+        ]
+    }
+] 
