@@ -25,8 +25,8 @@ curl -X GET -H "Content-Type: application/vnd.schemaregistry.v1+json" http://loc
 curl -X PUT -H "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"compatibility": "FORWARD"}' http://localhost:8082/config
 ```
 
-# Una vez generados los ficheros java instancias la clase que contiene el nuevo esquema, modificas el subject del topic a comprobar
-# y arrancas la aplicacion Avro2SchemaRegistry. Internamente hace POST al schema registry a la url que se muestra a continuacion y te devuelve si es compatible
+Una vez generados los ficheros java instancias la clase que contiene el nuevo esquema, modificas el subject del topic a comprobar
+y arrancas la aplicacion Avro2SchemaRegistry. Internamente hace POST al schema registry a la url que se muestra a continuacion y te devuelve si es compatible
 
 ```
 http://localhost:8082/compatibility/subjects/<subject>/versions/latest
